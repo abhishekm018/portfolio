@@ -5,20 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Abhishek M — SDET & GenAI Tester</title>
   <meta name="description" content="Abhishek M — SDET | GenAI | Automation | R&D" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="bg-animated" aria-hidden="true"></div>
 
   <div class="page container">
-    <!-- header -->
-    <header class="site-header anim">
-      <div class="brand">
-        <div class="name">Abhishek M</div>
-        <div class="role small">I'm SDET — Software Test Engineer</div>
+    <!-- header: left = photo+name, right = socials -->
+    <header class="site-header">
+      <div class="header-left">
+        <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="header-photo" />
+        <div class="header-name">Abhishek M</div>
       </div>
 
-      <nav class="top-nav">
+      <nav class="header-right">
         <a class="nav-btn" href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank" rel="noopener">LinkedIn</a>
         <a class="nav-btn" href="https://x.com/Iam_abhishek_m?t=NQwTx6zuUlecMXSAz2_4ag&s=08" target="_blank" rel="noopener">Twitter</a>
         <a class="nav-btn" href="https://github.com/abhishekm018" target="_blank" rel="noopener">GitHub</a>
@@ -26,39 +30,35 @@
     </header>
 
     <main>
-      <!-- HERO -->
-      <section class="card hero anim">
+      <!-- HERO card -->
+      <section class="card hero" data-aos="fade-up" data-aos-duration="700">
         <div class="hero-left">
           <h1 class="hero-title">Abhishek M</h1>
-          <p class="hero-role">Software Development Engineer in Test (SDET) · GenAI Tester · R&D Enthusiast</p>
-          <div class="cta-hero">
-            <a class="btn social" href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank">LinkedIn</a>
-            <a class="btn social" href="https://x.com/Iam_abhishek_m?t=NQwTx6zuUlecMXSAz2_4ag&s=08" target="_blank">Twitter</a>
-            <a class="btn social" href="https://github.com/abhishekm018" target="_blank">GitHub</a>
-          </div>
+          <p class="hero-sub">Software Development Engineer in Test (SDET) · GenAI Tester · R&D Enthusiast</p>
         </div>
-
         <div class="hero-right">
-          <img id="profile" src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo glow-photo" />
+          <!-- decorative rounded photo (already in header too) -->
+          <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo" />
         </div>
       </section>
 
       <!-- About -->
-      <section class="card anim">
+      <section class="card" data-aos="fade-up" data-aos-delay="60">
         <h3>About</h3>
-        <p class="muted about-justified">
+        <p class="about-justified">
           A proactive and analytical Software Quality Engineer with hands-on experience in both manual testing and the cutting-edge fields of GenAI and Large Language Model (LLM) testing. Proficient in Python and Java automation, I work with a modern toolchain that includes Selenium WebDriver, TestNG, Maven, and Jenkins to streamline the CI/CD pipeline. I actively apply various AI tools to enhance product quality and efficiency, from automating test case generation to improving defect reporting. My curiosity for the next frontier in technology extends to research and development for Artificial General Intelligence (AGI), providing a unique perspective on testing complex systems. As a collaborative problem-solver, I'm committed to partnering with cross-functional teams to deliver exceptional solutions.
         </p>
       </section>
 
-      <!-- Work Experience: Amazon then FreshersLab -->
-      <section class="card anim">
+      <!-- Work Experience: each entry has company+duration inline; movie-like transition between -->
+      <section class="card" data-aos="fade-up" data-aos-delay="120">
         <h3>Work Experience</h3>
 
-        <div class="exp exp-movie anim">
+        <!-- Amazon -->
+        <article class="exp" data-aos="fade-right" data-aos-duration="700">
           <div class="exp-head">
             <div class="company">Amazon — Associate, Quality Engineer</div>
-            <div class="meta">Apr 2025 — Present | Bengaluru, Karnataka, India (On-site)</div>
+            <div class="meta">Apr 2025 — Present · Bengaluru, Karnataka, India (On-site)</div>
           </div>
           <div class="exp-desc">
             <ul>
@@ -68,12 +68,13 @@
               <li>Collaborate with cross-functional teams to deliver high-quality, scalable solutions.</li>
             </ul>
           </div>
-        </div>
+        </article>
 
-        <div class="exp exp-movie anim">
+        <!-- FreshersLab -->
+        <article class="exp" data-aos="fade-left" data-aos-duration="700" data-aos-delay="80">
           <div class="exp-head">
             <div class="company">FreshersLab — Full Stack QA Engineer (Intern)</div>
-            <div class="meta">Aug 2023 — Oct 2023 | Bengaluru, India (Hybrid)</div>
+            <div class="meta">Aug 2023 — Oct 2023 · Bengaluru, India (Hybrid)</div>
           </div>
           <div class="exp-desc">
             <ul>
@@ -82,81 +83,95 @@
               <li>Tracked defects in YouTrack and worked with devs to reproduce & resolve issues.</li>
             </ul>
           </div>
-        </div>
-
+        </article>
       </section>
 
-      <!-- Education: compact -->
-      <section class="card anim">
+      <!-- Education compact with center dots -->
+      <section class="card" data-aos="fade-up" data-aos-delay="140">
         <h3>Education</h3>
-
         <div class="edu-compact">
-          <div><strong>Don Bosco Institute of Technology (DBIT), Bengaluru</strong><br/>
+          <div>
+            <strong>Don Bosco Institute of Technology (DBIT), Bengaluru</strong><br/>
             Bachelor of Engineering (B.E.) — Electrical and Electronics Engineering<br/>
             Dec 2020 — Jun 2024 · Grade: 8.2 / 10
           </div>
 
-          <div><strong>Bharathi Education College, Bharathinagar KM Doddi, Mandya</strong><br/>
-            PUC, Science<br/>
-            Aug 2018 — Mar 2020 · Grade: A
+          <div>
+            <strong>Bharathi Education College, Bharathinagar KM Doddi, Mandya</strong><br/>
+            PUC, Science · Aug 2018 — Mar 2020 · Grade: A
           </div>
 
-          <div><strong>Vishal English School, Bengaluru</strong><br/>
-            SSLC<br/>
-            Apr 2018 · Grade: A
+          <div>
+            <strong>Vishal English School, Bengaluru</strong><br/>
+            SSLC · Apr 2018 · Grade: A
           </div>
         </div>
       </section>
 
-      <!-- Core Skills: each is a glass pill, single-line, upward motion -->
-      <section class="card anim">
+      <!-- Core skills as inline glass pills (upward/hover transition) -->
+      <section class="card" data-aos="fade-up" data-aos-delay="160">
         <h3>Core Skills</h3>
         <div class="skills-row">
-          <div class="skill-pill">Manual QA & Process — Test-case design, exploratory testing</div>
-          <div class="skill-pill">GenAI & LLM Testing — Prompt engineering & adversarial testing</div>
-          <div class="skill-pill">Automation & Frameworks — Selenium, PyTest, TestNG, Jenkins</div>
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="40">Manual QA & Process — Test-case design, exploratory testing</div>
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="120">GenAI & LLM Testing — Prompt engineering & adversarial testing</div>
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="200">Automation & Frameworks — Selenium, PyTest, TestNG, Jenkins</div>
         </div>
       </section>
 
-      <!-- R&D: formatting exact no extra blank line after heading -->
-      <section class="card anim">
+      <!-- R&D — formatted with list and references -->
+      <section class="card" data-aos="fade-up" data-aos-delay="180">
         <h3>R&D — GenAI & AGI</h3>
-        <div class="muted rd-block">
+        <div class="rd-block">
           <strong>Focus areas & references:</strong>
           <div class="rd-list">
-            Hallucination detection, adversarial prompt testing, and robustness assessment.<br/>
-            Safety harness design for LLMs and exploration of testing approaches for AGI.
+            <ul>
+              <li>Hallucination detection, adversarial prompt testing, and robustness assessment.</li>
+              <li>Safety harness design for LLMs and exploration of testing approaches for AGI.</li>
+              <li>Journal pointers: search arXiv / IEEE / ACM for "LLM evaluation", "AI vs AGI testing", "adversarial testing for generative models".</li>
+            </ul>
           </div>
         </div>
       </section>
 
       <!-- Languages -->
-      <section class="card anim">
+      <section class="card" data-aos="fade-up" data-aos-delay="200">
         <h3>Languages</h3>
         <div class="lang-grid">
-          <div class="lang"><div class="lang-row"><strong>English</strong><span class="muted">Full professional</span></div><div class="bar"><div class="bar-fill" data-fill="100"></div></div></div>
-          <div class="lang"><div class="lang-row"><strong>Kannada</strong><span class="muted">Native / Bilingual</span></div><div class="bar"><div class="bar-fill" data-fill="100"></div></div></div>
-          <div class="lang"><div class="lang-row"><strong>Hindi</strong><span class="muted">Full professional</span></div><div class="bar"><div class="bar-fill" data-fill="90"></div></div></div>
-          <div class="lang"><div class="lang-row"><strong>Tamil</strong><span class="muted">Elementary</span></div><div class="bar"><div class="bar-fill" data-fill="40"></div></div></div>
+          <div class="lang">
+            <div class="lang-row"><strong>English</strong><span class="muted">Full professional</span></div>
+            <div class="bar"><div class="bar-fill" data-fill="100"></div></div>
+          </div>
+          <div class="lang">
+            <div class="lang-row"><strong>Kannada</strong><span class="muted">Native / Bilingual</span></div>
+            <div class="bar"><div class="bar-fill" data-fill="100"></div></div>
+          </div>
+          <div class="lang">
+            <div class="lang-row"><strong>Hindi</strong><span class="muted">Full professional</span></div>
+            <div class="bar"><div class="bar-fill" data-fill="90"></div></div>
+          </div>
+          <div class="lang">
+            <div class="lang-row"><strong>Tamil</strong><span class="muted">Elementary</span></div>
+            <div class="bar"><div class="bar-fill" data-fill="40"></div></div>
+          </div>
         </div>
       </section>
 
       <!-- OS & Tools -->
-      <section class="card anim">
+      <section class="card" data-aos="fade-up" data-aos-delay="220">
         <h3>Operating Systems & Tools</h3>
         <p class="muted"><strong>OS:</strong> Linux · Windows · macOS</p>
         <p class="muted"><strong>Tools & IDEs:</strong> Jira · TestRail · YouTrack · Sensai · Postman · Eclipse · PyCharm · VS Code · Jenkins</p>
       </section>
 
       <!-- Project -->
-      <section class="card anim">
+      <section class="card" data-aos="fade-up" data-aos-delay="240">
         <h3>Project — Learning Management System</h3>
         <p class="muted">Contributed to testing and automation using Selenium WebDriver (Python). Black Box & White Box testing, CI/CD validation and regression coverage.</p>
         <p><a href="https://github.com/abhishekm018/LMS-Website" target="_blank" rel="noopener">View on GitHub</a></p>
       </section>
 
       <!-- Certificates -->
-      <section class="card anim">
+      <section class="card" data-aos="fade-up" data-aos-delay="260">
         <h3>Certificates</h3>
         <div class="gallery">
           <figure class="thumb"><img src="aws ai.jpeg" alt="AWS Educate"><figcaption>AWS Educate</figcaption></figure>
@@ -167,20 +182,20 @@
         </div>
       </section>
 
-      <!-- Awards: 2023 then 2024 then science -->
-      <section class="card anim">
+      <!-- Awards: swapped order (award2 shown first, award1 second) -->
+      <section class="card" data-aos="fade-up" data-aos-delay="280">
         <h3>Awards & Achievements</h3>
         <div class="gallery">
-          <figure class="thumb"><img src="award2.jpg" alt="Topper"><figcaption>Silver medal for Topper of the year in 2023</figcaption></figure>
-          <figure class="thumb"><img src="award1.jpg" alt="Distinction"><figcaption>Silver medal for Distinction in the year 2024</figcaption></figure>
+          <figure class="thumb"><img src="award2.jpg" alt="Topper 2023"><figcaption>Silver medal for Topper of the year in 2023</figcaption></figure>
+          <figure class="thumb"><img src="award1.jpg" alt="Distinction 2024"><figcaption>Silver medal for Distinction in the year 2024</figcaption></figure>
           <figure class="thumb"><img src="award4.jpeg" alt="Science Talent"><figcaption>1st Rank in Government of Karnataka Science Talent Exam</figcaption></figure>
         </div>
       </section>
 
     </main>
 
-    <!-- footer -->
-    <footer class="card footer anim">
+    <!-- footer: contact left, resume center, social right (each on new line) -->
+    <footer class="card footer" data-aos="fade-up" data-aos-delay="300">
       <div class="footer-left">
         <strong>Contact</strong>
         <div class="muted">Email: abhishekgenagi@gmail.com</div>
@@ -211,6 +226,12 @@
     </div>
   </div>
 
+  <!-- AOS script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="script.js" defer></script>
+
+  <script>
+    AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  </script>
 </body>
 </html>
