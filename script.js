@@ -1,34 +1,29 @@
-// typing effect (hero)
+/* typing effect */
 (() => {
   const el = document.getElementById('typing');
   const phrases = ['SDET','GenAI Tester','Software Test Engineer','R&D Enthusiast'];
-  let iPhrase = 0, iChar = 0, deleting = false;
+  let p = 0, ch = 0, del = false;
   el.textContent = '';
-  setTimeout(typeLoop, 400);
-
-  function typeLoop() {
-    const current = phrases[iPhrase];
-    if (!deleting) {
-      iChar++;
-      el.textContent = current.slice(0, iChar);
-      if (iChar === current.length) { deleting = true; setTimeout(typeLoop, 900); return; }
-      setTimeout(typeLoop, 90);
+  setTimeout(loop, 300);
+  function loop() {
+    const cur = phrases[p];
+    if (!del) {
+      ch++; el.textContent = cur.slice(0, ch);
+      if (ch === cur.length) { del = true; setTimeout(loop, 900); return; }
     } else {
-      iChar--;
-      el.textContent = current.slice(0, iChar);
-      if (iChar === 0) { deleting = false; iPhrase = (iPhrase + 1) % phrases.length; setTimeout(typeLoop, 400); }
-      else setTimeout(typeLoop, 40);
+      ch--; el.textContent = cur.slice(0, ch);
+      if (ch === 0) { del = false; p = (p + 1) % phrases.length; }
     }
+    setTimeout(loop, del ? 40 : 90);
   }
 })();
 
-// scroll reveal and language bar animation
+/* scroll reveal + progress bars */
 (() => {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // animate language bars inside
         entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
           const pct = b.getAttribute('data-fill') || 0;
           b.style.width = pct + '%';
@@ -37,11 +32,10 @@
       }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 })();
 
-// gallery lightbox
+/* lightbox */
 (() => {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
@@ -54,7 +48,6 @@
     lb.classList.add('active');
     lb.setAttribute('aria-hidden', 'false');
   }
-
   function close() {
     lb.classList.remove('active');
     lbImg.src = '';
@@ -64,21 +57,18 @@
 
   document.querySelectorAll('.gallery .thumb img').forEach(img => {
     img.addEventListener('click', () => {
-      const cap = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
-      open(img.src, cap);
+      const caption = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
+      open(img.src, caption);
     });
   });
 
   lbClose.addEventListener('click', close);
-  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-})();
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
 
-// image error fallback to avoid blank boxes
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('img').forEach(img => {
-    img.onerror = () => {
-      img.style.opacity = 0.08;
-      img.alt = 'Image missing';
-    };
+  // fallback: hide broken images slightly
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('img').forEach(img => {
+      img.onerror = () => { img.style.opacity = 0.08; img.alt = 'Image missing'; };
+    });
   });
-});
+})();
