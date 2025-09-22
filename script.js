@@ -1,10 +1,10 @@
-// scroll reveal + progress bars + lightbox
 document.addEventListener('DOMContentLoaded', () => {
-  // reveal + bars
+  // Intersection reveal (with exp movie effect)
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, idx) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // fill bars if any
         entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
           const pct = b.getAttribute('data-fill') || 0;
           b.style.width = pct + '%';
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lb.setAttribute('aria-hidden', 'true');
     }
 
-    document.querySelectorAll('.gallery .thumb img, .thumb img').forEach(img => {
+    document.querySelectorAll('.gallery .thumb img').forEach(img => {
       img.addEventListener('click', () => {
         const caption = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
         open(img.src, caption);
