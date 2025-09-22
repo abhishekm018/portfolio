@@ -1,84 +1,84 @@
-// typing effect (cycles through phrases)
+// typing effect (hero)
 (() => {
   const el = document.getElementById('typing');
-  const phrases = [
-    'SDET',
-    'GenAI Tester',
-    'Software Test Engineer',
-    'R&D Enthusiast'
-  ];
+  const phrases = ['SDET','GenAI Tester','Software Test Engineer','R&D Enthusiast'];
   let iPhrase = 0, iChar = 0, deleting = false;
-
   el.textContent = '';
-  setTimeout(() => { typeLoop(); }, 600);
+  setTimeout(typeLoop, 400);
 
   function typeLoop() {
     const current = phrases[iPhrase];
     if (!deleting) {
       iChar++;
       el.textContent = current.slice(0, iChar);
-      if (iChar === current.length) {
-        deleting = true;
-        setTimeout(typeLoop, 1000);
-      } else setTimeout(typeLoop, 80);
+      if (iChar === current.length) { deleting = true; setTimeout(typeLoop, 900); return; }
+      setTimeout(typeLoop, 90);
     } else {
       iChar--;
       el.textContent = current.slice(0, iChar);
-      if (iChar === 0) {
-        deleting = false;
-        iPhrase = (iPhrase + 1) % phrases.length;
-        setTimeout(typeLoop, 400);
-      } else setTimeout(typeLoop, 40);
+      if (iChar === 0) { deleting = false; iPhrase = (iPhrase + 1) % phrases.length; setTimeout(typeLoop, 400); }
+      else setTimeout(typeLoop, 40);
     }
   }
 })();
 
-// intersection observer for scroll reveal and language bars
+// scroll reveal and language bar animation
 (() => {
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(ent => {
-      if (ent.isIntersecting) {
-        ent.target.classList.add('visible');
-        ent.target.querySelectorAll && ent.target.querySelectorAll('.bar-fill').forEach(b => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // animate language bars inside
+        entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
           const pct = b.getAttribute('data-fill') || 0;
           b.style.width = pct + '%';
         });
-        obs.unobserve(ent.target);
+        obs.unobserve(entry.target);
       }
     });
-  }, {threshold: 0.15});
+  }, { threshold: 0.12 });
 
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 })();
 
-// lightbox for gallery thumbnails
+// gallery lightbox
 (() => {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
   const lbCap = document.getElementById('lb-cap');
   const lbClose = document.getElementById('lb-close');
 
-  function openLightbox(src, caption) {
+  function open(src, caption) {
     lbImg.src = src;
     lbCap.textContent = caption || '';
     lb.classList.add('active');
     lb.setAttribute('aria-hidden', 'false');
   }
 
-  function closeLightbox() {
+  function close() {
     lb.classList.remove('active');
     lbImg.src = '';
     lbCap.textContent = '';
     lb.setAttribute('aria-hidden', 'true');
   }
 
-  // attach click handlers to gallery images
   document.querySelectorAll('.gallery .thumb img').forEach(img => {
     img.addEventListener('click', () => {
-      openLightbox(img.src, img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '');
+      const cap = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
+      open(img.src, cap);
     });
   });
 
-  lbClose.addEventListener('click', closeLightbox);
-  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
 })();
+
+// image error fallback to avoid blank boxes
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('img').forEach(img => {
+    img.onerror = () => {
+      img.style.opacity = 0.08;
+      img.alt = 'Image missing';
+    };
+  });
+});
