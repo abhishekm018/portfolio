@@ -6,7 +6,7 @@
   <title>Abhishek M — SDET & GenAI Tester</title>
   <meta name="description" content="Abhishek M — SDET | GenAI | Automation | R&D" />
 
-  <!-- AOS (Animate On Scroll) -->
+  <!-- AOS CSS (Animate On Scroll) -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
@@ -15,14 +15,11 @@
   <div class="bg-animated" aria-hidden="true"></div>
 
   <div class="page container">
-    <!-- header: left = photo+name, right = socials -->
+    <!-- header: minimal (no "I'm SDET" or large name here) -->
     <header class="site-header">
-      <div class="header-left">
-        <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="header-photo" />
-        <div class="header-name">Abhishek M</div>
-      </div>
-
+      <div class="header-left"></div>
       <nav class="header-right">
+        <!-- top-right social persist but main socials are under hero as well -->
         <a class="nav-btn" href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank" rel="noopener">LinkedIn</a>
         <a class="nav-btn" href="https://x.com/Iam_abhishek_m?t=NQwTx6zuUlecMXSAz2_4ag&s=08" target="_blank" rel="noopener">Twitter</a>
         <a class="nav-btn" href="https://github.com/abhishekm018" target="_blank" rel="noopener">GitHub</a>
@@ -30,15 +27,22 @@
     </header>
 
     <main>
-      <!-- HERO card -->
+      <!-- HERO: photo + name + SDET role + socials underneath (as requested) -->
       <section class="card hero" data-aos="fade-up" data-aos-duration="700">
         <div class="hero-left">
           <h1 class="hero-title">Abhishek M</h1>
           <p class="hero-sub">Software Development Engineer in Test (SDET) · GenAI Tester · R&D Enthusiast</p>
+
+          <!-- Socials under SDET -->
+          <div class="cta-hero">
+            <a class="btn social" href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank">LinkedIn</a>
+            <a class="btn social" href="https://x.com/Iam_abhishek_m?t=NQwTx6zuUlecMXSAz2_4ag&s=08" target="_blank">Twitter</a>
+            <a class="btn social" href="https://github.com/abhishekm018" target="_blank">GitHub</a>
+          </div>
         </div>
+
         <div class="hero-right">
-          <!-- decorative rounded photo (already in header too) -->
-          <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo" />
+          <img id="profile" src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo" />
         </div>
       </section>
 
@@ -50,15 +54,14 @@
         </p>
       </section>
 
-      <!-- Work Experience: each entry has company+duration inline; movie-like transition between -->
+      <!-- Work Experience -->
       <section class="card" data-aos="fade-up" data-aos-delay="120">
         <h3>Work Experience</h3>
 
-        <!-- Amazon -->
         <article class="exp" data-aos="fade-right" data-aos-duration="700">
           <div class="exp-head">
             <div class="company">Amazon — Associate, Quality Engineer</div>
-            <div class="meta">Apr 2025 — Present · Bengaluru, Karnataka, India (On-site)</div>
+            <div class="meta">Apr 2025 — Present · Bengaluru, India</div>
           </div>
           <div class="exp-desc">
             <ul>
@@ -70,11 +73,10 @@
           </div>
         </article>
 
-        <!-- FreshersLab -->
         <article class="exp" data-aos="fade-left" data-aos-duration="700" data-aos-delay="80">
           <div class="exp-head">
             <div class="company">FreshersLab — Full Stack QA Engineer (Intern)</div>
-            <div class="meta">Aug 2023 — Oct 2023 · Bengaluru, India (Hybrid)</div>
+            <div class="meta">Aug 2023 — Oct 2023 · Bengaluru, India</div>
           </div>
           <div class="exp-desc">
             <ul>
@@ -86,7 +88,7 @@
         </article>
       </section>
 
-      <!-- Education compact with center dots -->
+      <!-- Education with center dots (·) -->
       <section class="card" data-aos="fade-up" data-aos-delay="140">
         <h3>Education</h3>
         <div class="edu-compact">
@@ -108,28 +110,34 @@
         </div>
       </section>
 
-      <!-- Core skills as inline glass pills (upward/hover transition) -->
+      <!-- Core Skills: three glass pills side-by-side -->
       <section class="card" data-aos="fade-up" data-aos-delay="160">
         <h3>Core Skills</h3>
         <div class="skills-row">
-          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="40">Manual QA & Process — Test-case design, exploratory testing</div>
-          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="120">GenAI & LLM Testing — Prompt engineering & adversarial testing</div>
-          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="200">Automation & Frameworks — Selenium, PyTest, TestNG, Jenkins</div>
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="40">
+            <strong>Manual QA & Process</strong> — Exploratory, black-box & white-box testing; test case design, defect lifecycle management and regression testing. Agile/Scrum experience.
+          </div>
+
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="120">
+            <strong>GenAI & LLM Testing</strong> — Prompt engineering, adversarial & safety testing, evaluation metrics and conversational-AI validation (data & behavior tests).
+          </div>
+
+          <div class="skill-pill" data-aos="zoom-in" data-aos-delay="200">
+            <strong>Automation & Frameworks</strong> — Python (Selenium WebDriver, PyTest), Java (Selenium, TestNG, Maven), Mobile: Appium. CI/CD with Jenkins; Hydra-style orchestration.
+          </div>
         </div>
       </section>
 
-      <!-- R&D — formatted with list and references -->
+      <!-- R&D -->
       <section class="card" data-aos="fade-up" data-aos-delay="180">
         <h3>R&D — GenAI & AGI</h3>
         <div class="rd-block">
           <strong>Focus areas & references:</strong>
-          <div class="rd-list">
-            <ul>
-              <li>Hallucination detection, adversarial prompt testing, and robustness assessment.</li>
-              <li>Safety harness design for LLMs and exploration of testing approaches for AGI.</li>
-              <li>Journal pointers: search arXiv / IEEE / ACM for "LLM evaluation", "AI vs AGI testing", "adversarial testing for generative models".</li>
-            </ul>
-          </div>
+          <ul class="rd-list">
+            <li>Hallucination detection, adversarial prompt testing, and robustness assessment.</li>
+            <li>Safety harness design for LLMs and exploration of testing approaches for AGI.</li>
+            <li>Journal pointers — search arXiv / IEEE / ACM for: "LLM evaluation", "AI vs AGI testing", "adversarial testing for generative models".</li>
+          </ul>
         </div>
       </section>
 
@@ -182,7 +190,7 @@
         </div>
       </section>
 
-      <!-- Awards: swapped order (award2 shown first, award1 second) -->
+      <!-- Awards (award2 first, award1 second) -->
       <section class="card" data-aos="fade-up" data-aos-delay="280">
         <h3>Awards & Achievements</h3>
         <div class="gallery">
@@ -194,7 +202,7 @@
 
     </main>
 
-    <!-- footer: contact left, resume center, social right (each on new line) -->
+    <!-- footer -->
     <footer class="card footer" data-aos="fade-up" data-aos-delay="300">
       <div class="footer-left">
         <strong>Contact</strong>
@@ -228,10 +236,8 @@
 
   <!-- AOS script -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="script.js" defer></script>
 
-  <script>
-    AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
-  </script>
+  <!-- main JS -->
+  <script src="script.js" defer></script>
 </body>
 </html>
