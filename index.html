@@ -1,110 +1,261 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Abhishek M — SDET & GenAI Tester</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Abhishek M — SDET & GenAI Tester</title>
+<meta name="description" content="Abhishek M — SDET | GenAI & LLM Testing | Automation | R&D" />
+<style>
+  /* --------- Light theme + layout --------- */
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --muted:#475066;
+    --accent1:#0ea5a4; --accent2:#7c3aed; --shadow:0 10px 28px rgba(16,24,40,0.06);
+    --maxw:980px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#0f1724;background:linear-gradient(180deg,#fbfdff,#f6f7fb)}
+  a{color:var(--accent1)}
+  .container{max-width:var(--maxw);margin:0 auto;padding:22px}
+  header{padding:14px 0}
+  .header-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand .name{font-weight:700;font-size:1.25rem;color:var(--accent2);margin:0}
+  .role-line{color:var(--muted);margin-top:6px;font-size:0.95rem}
+  .actions a{margin-left:8px;text-decoration:none}
+  .btn{display:inline-block;padding:9px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+  .btn.small{background:#f3f4f6;color:#111;border:1px solid #e6e9ef}
+  .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border:none;box-shadow:0 6px 18px rgba(124,58,237,0.12)}
+  .btn.ghost{background:transparent;border:1px solid #e6e9ef;color:var(--accent1)}
+
+  /* hero */
+  .glass{background:var(--card);border-radius:12px;padding:20px;margin:18px 0;box-shadow:var(--shadow);border:1px solid rgba(15,23,36,0.02)}
+  .hero{display:flex;gap:20px;align-items:center;justify-content:space-between}
+  .hero-left{flex:1}
+  .eyebrow{color:var(--accent1);font-weight:700;margin:0}
+  .hero-title{font-size:1.9rem;margin:8px 0}
+  .hero-sub{color:var(--muted);margin:0 0 12px}
+  .profile-photo{width:120px;height:120px;border-radius:12px;object-fit:cover;border:1px solid rgba(15,23,36,0.04)}
+
+  /* cards / layout */
+  h3{margin:0 0 10px 0}
+  .core-skill{margin:10px 0}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .skill{padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(15,23,36,0.03)}
+  .lang-grid{display:grid;gap:12px}
+  .lang-row{display:flex;justify-content:space-between;align-items:center}
+  .bar{background:#eef3fb;height:10px;border-radius:999px;margin-top:8px;overflow:hidden}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:999px;transition:width 900ms cubic-bezier(.2,.9,.2,1)}
+  
+  /* gallery */
+  .gallery{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+  .thumb{width:160px;background:#fff;padding:6px;border-radius:8px;text-align:center;border:1px solid rgba(15,23,36,0.03);transition:transform .22s, box-shadow .22s}
+  .thumb img{width:100%;height:110px;object-fit:cover;border-radius:6px;cursor:pointer;display:block}
+  .thumb:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(16,24,40,0.08)}
+  .thumb figcaption{font-size:0.86rem;color:var(--muted);margin-top:8px}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  .lightbox.active{display:flex}
+  .lb-inner{max-width:1000px;width:100%;background:#fff;padding:14px;border-radius:10px;position:relative;text-align:center}
+  .lb-inner img{max-width:100%;height:auto;border-radius:6px}
+  .lb-close{position:absolute;right:10px;top:8px;background:none;border:none;font-size:20px;cursor:pointer}
+
+  /* reveal + typing small helpers */
+  .anim{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+  .anim.visible{opacity:1;transform:none}
+  .typing{display:inline-block;color:var(--accent2);font-weight:700}
+
+  /* responsive */
+  @media (max-width:820px){
+    .hero{flex-direction:column;align-items:flex-start}
+    .thumb{width:48%}
+    .container{padding:16px}
+  }
+
+  footer{padding:20px 0;text-align:center;color:var(--muted)}
+</style>
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand">
-        <h1 class="name">Abhishek M</h1>
-        <p class="role-line">I'm <span id="typing"></span></p>
+  <div class="container">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <p class="name">Abhishek M</p>
+          <p class="role-line">I'm <strong>SDET</strong> — <span id="typing" class="typing" aria-live="polite"></span></p>
+        </div>
+        <div class="actions">
+          <a class="btn small" href="mailto:abhishekgenagi@gmail.com">Email</a>
+          <a class="btn small" href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank">LinkedIn</a>
+          <a class="btn small" href="https://github.com/abhishekm018" target="_blank">GitHub</a>
+        </div>
       </div>
-      <nav class="socials">
-        <a href="mailto:abhishekgenagi@gmail.com" class="btn small">Email</a>
-        <a href="https://www.linkedin.com/in/abhishek-m-24a4a8241" target="_blank" class="btn small">LinkedIn</a>
-        <a href="https://github.com/abhishekm018" target="_blank" class="btn small">GitHub</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="container">
-    <section class="hero card">
+    <!-- HERO -->
+    <section class="glass hero anim">
       <div class="hero-left">
-        <h2>Hi, I'm Abhishek M</h2>
-        <p>SDET · GenAI Tester · QA Engineer · R&D Enthusiast</p>
+        <p class="eyebrow">Hi — I build reliable AI systems</p>
+        <h1 class="hero-title">Abhishek M</h1>
+        <p class="hero-sub">SDET · GenAI Tester · QA Engineer · R&D Enthusiast</p>
         <div class="cta">
-          <a href="resume.pdf" class="btn primary" download>Download Resume</a>
-          <a href="mailto:abhishekgenagi@gmail.com" class="btn ghost">Contact</a>
+          <a class="btn primary" href="resume.pdf" download>Download Resume</a>
+          <a class="btn ghost" href="mailto:abhishekgenagi@gmail.com">Contact</a>
         </div>
       </div>
       <div class="hero-right">
-        <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo">
+        <img src="AbhiPortfolio1.jpg" alt="Abhishek M" class="profile-photo" id="profileImg">
       </div>
     </section>
 
-    <section class="card anim">
+    <!-- About -->
+    <section class="glass anim">
       <h3>About</h3>
-      <p>SDET and GenAI tester focused on automation, reliability, and R&D in AI systems. I specialize in test frameworks, LLM validation, and CI/CD QA pipelines.</p>
+      <p class="muted">SDET and GenAI tester focused on automation, reliability, and R&D in AI systems. I specialize in test frameworks, LLM validation, and CI/CD QA pipelines.</p>
     </section>
 
-    <section class="card anim">
+    <!-- Core Skills -->
+    <section class="glass anim">
       <h3>Core Skills</h3>
-      <ul>
-        <li><strong>Manual QA & Process:</strong> Black-box & white-box testing, regression, Agile/Scrum</li>
-        <li><strong>GenAI & LLM Testing:</strong> Prompt engineering, adversarial tests, safety & evaluation</li>
-        <li><strong>Automation & Frameworks:</strong> Selenium, PyTest, TestNG, Appium, Jenkins</li>
-      </ul>
+      <div class="core-skill"><strong>Manual QA & Process:</strong> Exploratory, black-box & white-box testing; test case design, defect lifecycle and regression.</div>
+      <div class="core-skill"><strong>GenAI & LLM Testing:</strong> Prompt engineering, adversarial & safety testing, evaluation metrics.</div>
+      <div class="core-skill"><strong>Automation & Frameworks:</strong> Selenium WebDriver (Python), PyTest, TestNG, Appium, Jenkins, Hydra-style orchestration.</div>
     </section>
 
-    <section class="card anim">
+    <!-- Tools / Languages -->
+    <section class="glass anim">
       <h3>Languages</h3>
-      <p>English (Full professional) · Kannada (Native) · Hindi (Full professional) · Tamil (Elementary)</p>
+      <div class="lang-grid">
+        <div class="lang"><div class="lang-row"><strong>English</strong><span class="muted">Full professional</span></div><div class="bar"><div class="bar-fill" data-fill="100"></div></div></div>
+        <div class="lang"><div class="lang-row"><strong>Kannada</strong><span class="muted">Native / Bilingual</span></div><div class="bar"><div class="bar-fill" data-fill="100"></div></div></div>
+        <div class="lang"><div class="lang-row"><strong>Hindi</strong><span class="muted">Full professional</span></div><div class="bar"><div class="bar-fill" data-fill="90"></div></div></div>
+        <div class="lang"><div class="lang-row"><strong>Tamil</strong><span class="muted">Elementary</span></div><div class="bar"><div class="bar-fill" data-fill="40"></div></div></div>
+      </div>
     </section>
 
-    <section class="card anim">
-      <h3>Operating Systems</h3>
-      <p>Linux · Windows · macOS</p>
-      <h3>Tools & IDEs</h3>
-      <p>Jira, TestRail, YouTrack, Sensai, Postman, Eclipse, PyCharm, VS Code, Jenkins</p>
+    <section class="glass anim">
+      <h3>Operating Systems & Tools</h3>
+      <p class="muted"><strong>OS:</strong> Linux · Windows · macOS</p>
+      <p class="muted"><strong>Tools & IDEs:</strong> Jira, TestRail, YouTrack, Sensai, Postman, Eclipse, PyCharm, VS Code, Jenkins</p>
     </section>
 
-    <section class="card anim">
+    <!-- Project -->
+    <section class="glass anim">
       <h3>Project — Learning Management System</h3>
-      <p>Contributed testing and automation using Selenium WebDriver (Python). Black Box & White Box testing, CI/CD validation, regression coverage.</p>
+      <p class="muted">Contributed to testing and automation using Selenium WebDriver (Python). Black Box & White Box testing, CI/CD validation, regression coverage.</p>
       <p><a href="https://github.com/abhishekm018/LMS-Website" target="_blank">View on GitHub</a></p>
     </section>
 
-    <section class="card anim">
+    <!-- R&D -->
+    <section class="glass anim">
       <h3>R&D — GenAI & AGI</h3>
-      <p>Exploring testing methodologies bridging GenAI and AGI: adversarial prompts, hallucination detection, metric-driven evaluation, AGI safety.</p>
+      <p class="muted">R&D focus on adversarial prompts, hallucination detection, metric-driven evaluation and safety harnesses for LLMs. References: arXiv papers and research reports.</p>
     </section>
 
-    <section class="card anim">
+    <!-- Certificates -->
+    <section class="glass anim">
       <h3>Certificates</h3>
       <div class="gallery">
-        <img src="aws ai.jpeg" alt="AWS AI" class="thumb">
-        <img src="lean foundation.jpeg" alt="Lean Foundation" class="thumb">
-        <img src="python guvi.jpeg" alt="Python GUVI" class="thumb">
-        <img src="Tcs icon.jpeg" alt="TCS iON" class="thumb">
-        <img src="chatgtprompt.jpeg" alt="ChatGPT Prompt" class="thumb">
+        <figure class="thumb"><img src="aws ai.jpeg" alt="AWS Educate — GenAI"><figcaption>AWS Educate</figcaption></figure>
+        <figure class="thumb"><img src="lean foundation.jpeg" alt="Lean White Belt"><figcaption>Lean Foundation</figcaption></figure>
+        <figure class="thumb"><img src="python guvi.jpeg" alt="Python GUVI"><figcaption>Python — GUVI</figcaption></figure>
+        <figure class="thumb"><img src="Tcs icon.jpeg" alt="TCS iON"><figcaption>TCS iON</figcaption></figure>
+        <figure class="thumb"><img src="chatgtprompt.jpeg" alt="ChatGPT Prompt"><figcaption>ChatGPT & Prompt Eng</figcaption></figure>
       </div>
     </section>
 
-    <section class="card anim">
-      <h3>Awards</h3>
+    <!-- Awards -->
+    <section class="glass anim">
+      <h3>Awards & Achievements</h3>
       <div class="gallery">
-        <img src="awardD.jpeg" alt="Silver Medal — Distinction 2024" class="thumb">
-        <img src="aaward2d.jpeg" alt="Silver Medal — Topper 2023" class="thumb">
-        <img src="award4.jpeg" alt="Science Talent Exam 2017" class="thumb">
+        <figure class="thumb"><img src="awardD.jpeg" alt="Distinction 2024"><figcaption>Silver Medal — Distinction (2024)</figcaption></figure>
+        <figure class="thumb"><img src="aaward2d.jpeg" alt="Topper 2023"><figcaption>Silver Medal — Topper (2023)</figcaption></figure>
+        <figure class="thumb"><img src="award4.jpeg" alt="Science Talent 2017"><figcaption>1st Rank — Science Talent (2017)</figcaption></figure>
       </div>
-      <p><strong>1st Place</strong> — Regional Level TCS Intercollege Examination 2021</p>
+      <p style="margin-top:10px"><strong>1st Place</strong> — Regional Level TCS Intercollege Examination 2021</p>
     </section>
 
-    <section class="card anim">
+    <!-- Contact -->
+    <section class="glass anim" id="contact">
       <h3>Contact</h3>
-      <p>Email: <a href="mailto:abhishekgenagi@gmail.com">abhishekgenagi@gmail.com</a></p>
-      <p>Phone: <a href="tel:+918296648351">+91 8296648351</a></p>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <div style="min-width:180px"><strong>Email</strong><br><a href="mailto:abhishekgenagi@gmail.com">abhishekgenagi@gmail.com</a></div>
+        <div style="min-width:180px"><strong>Phone</strong><br><a href="tel:+918296648351">+91 8296648351</a></div>
+      </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <p>© Abhishek M — Portfolio</p>
-  </footer>
+    <footer style="text-align:center;padding:18px 0;color:var(--muted)">© Abhishek M — Portfolio</footer>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lb-inner">
+      <button id="lb-close" class="lb-close" aria-label="Close">✕</button>
+      <img id="lb-img" src="" alt="">
+      <p id="lb-cap"></p>
+    </div>
+  </div>
+
+<script>
+/* ---------- Typing effect ---------- */
+(function(){
+  const el = document.getElementById('typing');
+  const phrases = ['SDET','GenAI Tester','Software Test Engineer','R&D Enthusiast'];
+  let i=0,ch=0,del=false;
+  function loop(){
+    const cur = phrases[i];
+    if(!del){
+      ch++; el.textContent = cur.slice(0,ch);
+      if(ch===cur.length){ del=true; setTimeout(loop,900); return; }
+    } else {
+      ch--; el.textContent = cur.slice(0,ch);
+      if(ch===0){ del=false; i=(i+1)%phrases.length; }
+    }
+    setTimeout(loop, del?40:90);
+  }
+  setTimeout(loop, 300);
+})();
+
+/* ---------- Scroll reveal + language bars ---------- */
+(function(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        ent.target.classList.add('visible');
+        ent.target.querySelectorAll && ent.target.querySelectorAll('.bar-fill').forEach(b=>{
+          b.style.width = (b.getAttribute('data-fill')||0) + '%';
+        });
+        obs.unobserve(ent.target);
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+})();
+
+/* ---------- Lightbox ---------- */
+(function(){
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+  const lbClose = document.getElementById('lb-close');
+
+  function open(src, caption){ lbImg.src = src; lbCap.textContent = caption||''; lb.classList.add('active'); lb.setAttribute('aria-hidden','false'); }
+  function close(){ lb.classList.remove('active'); lbImg.src=''; lbCap.textContent=''; lb.setAttribute('aria-hidden','true'); }
+
+  document.querySelectorAll('.gallery .thumb img').forEach(img=>{
+    img.addEventListener('click', ()=> {
+      const cap = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
+      open(img.src, cap);
+    });
+  });
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', e => { if(e.target === lb) close(); });
+})();
+
+/* ---------- image fallback handler ---------- */
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('img').forEach(img=>{
+    img.onerror = ()=> { img.style.opacity = 0.06; img.alt = 'Image missing'; }
+  });
+});
+</script>
 </body>
 </html>
