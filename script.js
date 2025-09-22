@@ -1,4 +1,4 @@
-/* typing effect */
+/* Typing effect (hero) */
 (() => {
   const el = document.getElementById('typing');
   const phrases = ['SDET','GenAI Tester','Software Test Engineer','R&D Enthusiast'];
@@ -18,7 +18,7 @@
   }
 })();
 
-/* scroll reveal + progress bars */
+/* Scroll reveal + progress bars */
 (() => {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -35,9 +35,10 @@
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 })();
 
-/* lightbox */
+/* Lightbox for gallery images */
 (() => {
   const lb = document.getElementById('lightbox');
+  if (!lb) return;
   const lbImg = document.getElementById('lb-img');
   const lbCap = document.getElementById('lb-cap');
   const lbClose = document.getElementById('lb-close');
@@ -62,10 +63,10 @@
     });
   });
 
-  lbClose.addEventListener('click', close);
+  lbClose && lbClose.addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
 
-  // fallback: hide broken images slightly
+  // fallback for broken images
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img').forEach(img => {
       img.onerror = () => { img.style.opacity = 0.08; img.alt = 'Image missing'; };
