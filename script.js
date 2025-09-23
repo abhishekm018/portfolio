@@ -1,4 +1,3 @@
-// script.js: initialize AOS, fill bars, lightbox, and fallback IntersectionObserver
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize AOS if available
   try {
@@ -6,11 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
       AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
     }
   } catch (e) {
-    // ignore AOS init error
     console.warn('AOS init failed:', e);
   }
 
-  // Fill language bars immediately and also when visible
+  // Fill progress bars
   function fillBars() {
     document.querySelectorAll('.bar-fill').forEach(b => {
       const pct = b.getAttribute('data-fill') || 0;
@@ -19,16 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   fillBars();
 
-  // Lightbox: open on thumbnail click
+  // Lightbox
   const lb = document.getElementById('lightbox');
   if (lb) {
     const lbImg = document.getElementById('lb-img');
     const lbCap = document.getElementById('lb-cap');
     const lbClose = document.getElementById('lb-close');
-
-    function openLightbox(src, caption) {
+    function openLightbox(src, cap) {
       lbImg.src = src;
-      lbCap.textContent = caption || '';
+      lbCap.textContent = cap || '';
       lb.classList.add('active');
       lb.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -43,9 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.thumb img, .gallery img').forEach(img => {
       img.addEventListener('click', (e) => {
-        const captionEl = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
-        const caption = captionEl ? captionEl.innerText : '';
-        openLightbox(img.src, caption);
+        const cap = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
+        openLightbox(img.src, cap);
         e.stopPropagation();
       });
     });
@@ -53,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lbClose && lbClose.addEventListener('click', closeLightbox);
     lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
 
-    // fallback: if image fails to load -> low opacity instead of 'disabled'
+    // image fallback handling
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('error', () => {
         img.style.opacity = 0.14;
@@ -63,20 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // IntersectionObserver fallback: ensure non-AOS browsers still get reveal
-  const observer = new IntersectionObserver((entries) => {
+  // IntersectionObserver fallback: add 'visible' class for non-AOS
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // if element contains bar-fill, fill it
         entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
-          const pct = b.getAttribute('data-fill') || 0;
-          b.style.width = pct + '%';
+          b.style.width = (b.getAttribute('data-fill') || 0) + '%';
         });
-        observer.unobserve(entry.target);
+        io.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => observer.observe(el));
+  document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => io.observe(el));
 });
