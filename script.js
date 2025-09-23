@@ -1,70 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS safely
-  try { if (window.AOS) AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' }); } catch(e){ console.warn(e); }
+  // Init AOS safely
+  try {
+    if (window.AOS) AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  } catch (e) { console.warn('AOS init failed', e); }
 
-  // Fill progress bars
-  document.querySelectorAll('.bar-fill').forEach(b => {
-    const pct = b.getAttribute('data-fill') || 0;
-    // small timeout so AOS/IO can play nicely
-    setTimeout(()=> b.style.width = pct + '%', 120);
-  });
+  // Set copyright year
+  document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
 
-  // Lightbox
+  // Fill progress bars (with slight delay to allow AOS)
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(b => {
+      const pct = b.getAttribute('data-fill') || 0;
+      b.style.width = pct + '%';
+    });
+  }, 120);
+
+  // Lightbox for gallery thumbs
   const lb = document.getElementById('lightbox');
-  if (lb) {
-    const lbImg = document.getElementById('lb-img');
-    const lbCap = document.getElementById('lb-cap');
-    const lbClose = document.getElementById('lb-close');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+  const lbClose = document.getElementById('lb-close');
 
-    function openLightbox(src, cap) {
-      lbImg.src = src;
-      lbCap.textContent = cap || '';
-      lb.classList.add('active');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      lb.classList.remove('active');
-      lbImg.src = '';
-      lbCap.textContent = '';
-      lb.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.thumb img, .gallery img').forEach(img => {
-      img.addEventListener('click', (e) => {
-        const capEl = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
-        const cap = capEl ? capEl.innerText : '';
-        openLightbox(img.src, cap);
-        e.stopPropagation();
-      });
-    });
-
-    lbClose && lbClose.addEventListener('click', closeLightbox);
-    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
-
-    // fallback styling on broken images
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        img.style.opacity = 0.18;
-        img.style.filter = 'grayscale(60%)';
-        img.alt = 'Image not found';
-      });
-    });
+  function openLightbox(src, cap) {
+    lbImg.src = src;
+    lbCap.textContent = cap || '';
+    lb.classList.add('active');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.classList.remove('active');
+    lbImg.src = '';
+    lbCap.textContent = '';
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 
-  // IntersectionObserver fallback for reveal + bar animations
+  document.querySelectorAll('.thumb img, .gallery img').forEach(img => {
+    img.addEventListener('click', (e) => {
+      const capEl = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
+      const cap = capEl ? capEl.innerText : '';
+      openLightbox(img.src, cap);
+      e.stopPropagation();
+    });
+  });
+
+  lbClose && lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  // Fallback IntersectionObserver animate (for elements without AOS or if blocked)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // Fill any bars inside
         entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
           b.style.width = (b.getAttribute('data-fill') || 0) + '%';
         });
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.15 });
 
   document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => observer.observe(el));
+
+  // image error handling (shows faded placeholder if missing)
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.opacity = .18;
+      img.style.filter = 'grayscale(70%)';
+      img.alt = 'Image not found';
+    });
+  });
 });
