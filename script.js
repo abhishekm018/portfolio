@@ -1,21 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS if available
-  try {
-    if (window.AOS) {
-      AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
-    }
-  } catch (e) {
-    console.warn('AOS init failed:', e);
-  }
+  // Initialize AOS safely
+  try { if (window.AOS) AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' }); } catch(e){ console.warn(e); }
 
   // Fill progress bars
-  function fillBars() {
-    document.querySelectorAll('.bar-fill').forEach(b => {
-      const pct = b.getAttribute('data-fill') || 0;
-      b.style.width = pct + '%';
-    });
-  }
-  fillBars();
+  document.querySelectorAll('.bar-fill').forEach(b => {
+    const pct = b.getAttribute('data-fill') || 0;
+    // small timeout so AOS/IO can play nicely
+    setTimeout(()=> b.style.width = pct + '%', 120);
+  });
 
   // Lightbox
   const lb = document.getElementById('lightbox');
@@ -23,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lbImg = document.getElementById('lb-img');
     const lbCap = document.getElementById('lb-cap');
     const lbClose = document.getElementById('lb-close');
+
     function openLightbox(src, cap) {
       lbImg.src = src;
       lbCap.textContent = cap || '';
@@ -40,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.thumb img, .gallery img').forEach(img => {
       img.addEventListener('click', (e) => {
-        const cap = img.closest('figure') ? img.closest('figure').querySelector('figcaption').innerText : '';
+        const capEl = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
+        const cap = capEl ? capEl.innerText : '';
         openLightbox(img.src, cap);
         e.stopPropagation();
       });
@@ -49,28 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
     lbClose && lbClose.addEventListener('click', closeLightbox);
     lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
 
-    // image fallback handling
+    // fallback styling on broken images
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('error', () => {
-        img.style.opacity = 0.14;
-        img.style.filter = 'grayscale(40%)';
+        img.style.opacity = 0.18;
+        img.style.filter = 'grayscale(60%)';
         img.alt = 'Image not found';
       });
     });
   }
 
-  // IntersectionObserver fallback: add 'visible' class for non-AOS
-  const io = new IntersectionObserver((entries) => {
+  // IntersectionObserver fallback for reveal + bar animations
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
         entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
           b.style.width = (b.getAttribute('data-fill') || 0) + '%';
         });
-        io.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => io.observe(el));
+  document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => observer.observe(el));
 });
