@@ -153,26 +153,21 @@
       <p><a href="https://github.com/abhishekm018/LMS-Website" target="_blank" rel="noopener">View on GitHub</a></p>
     </section>
 
-    <!-- 8. Certificates & Awards (combined) -->
+    <!-- 8. Certificates & Awards (combined into grid) -->
     <section id="certs-awards" class="card" data-aos="fade-up" data-aos-duration="700">
-      <h3>Certificates & Awards</h3>
+      <h3>Certifications & Honors</h3>
 
-      <div class="gallery">
-        <!-- certificates -->
-        <figure class="thumb"><img src="aws ai.jpeg" alt="AWS Educate"><figcaption>AWS Educate</figcaption></figure>
-        <figure class="thumb"><img src="lean foundation.jpeg" alt="Lean Foundation"><figcaption>Lean Foundation</figcaption></figure>
-        <figure class="thumb"><img src="python guvi.jpeg" alt="Python GUVI"><figcaption>Python — GUVI</figcaption></figure>
-        <figure class="thumb"><img src="Tcs icon.jpeg" alt="TCS iON"><figcaption>TCS iON</figcaption></figure>
-        <figure class="thumb"><img src="chatgtprompt.jpeg" alt="ChatGPT & Prompt"><figcaption>ChatGPT & Prompt Eng</figcaption></figure>
-      </div>
+      <div class="gallery-grid" aria-label="certificates and awards gallery">
+        <!-- Add your images in the order you want them to appear -->
+        <figure class="thumb" data-title="AWS Educate"><img src="aws ai.jpeg" alt="AWS Educate"><figcaption>AWS Educate</figcaption></figure>
+        <figure class="thumb" data-title="Lean Foundation"><img src="lean foundation.jpeg" alt="Lean Foundation"><figcaption>Lean Foundation</figcaption></figure>
+        <figure class="thumb" data-title="Python — GUVI"><img src="python guvi.jpeg" alt="Python GUVI"><figcaption>Python — GUVI</figcaption></figure>
+        <figure class="thumb" data-title="TCS iON"><img src="Tcs icon.jpeg" alt="TCS iON"><figcaption>TCS iON</figcaption></figure>
 
-      <hr class="spacer"/>
-
-      <div class="gallery">
-        <!-- awards - keep order exactly as currently in your site (unchanged) -->
-        <figure class="thumb"><img src="award1.jpg" alt="Award 1"><figcaption>Silver medal for Topper of the year in 2023</figcaption></figure>
-        <figure class="thumb"><img src="award2.jpg" alt="Award 2"><figcaption>Silver medal for Distinction in the year 2024</figcaption></figure>
-        <figure class="thumb"><img src="award4.jpeg" alt="Award 3"><figcaption>1st Rank in Government of Karnataka Science Talent Exam</figcaption></figure>
+        <figure class="thumb" data-title="ChatGPT & Prompt Eng"><img src="chatgtprompt.jpeg" alt="ChatGPT & Prompt"><figcaption>ChatGPT & Prompt Eng</figcaption></figure>
+        <figure class="thumb" data-title="Silver medal 2023"><img src="award1.jpg" alt="Award 1"><figcaption>Silver medal — Topper 2023</figcaption></figure>
+        <figure class="thumb" data-title="Silver medal 2024"><img src="award2.jpg" alt="Award 2"><figcaption>Silver medal — Distinction 2024</figcaption></figure>
+        <figure class="thumb" data-title="1st Rank Science Talent"><img src="award4.jpeg" alt="Award 3"><figcaption>1st Rank — Karnataka Science Talent</figcaption></figure>
       </div>
     </section>
 
@@ -211,9 +206,11 @@
   </main>
 
   <!-- Lightbox for images -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
     <div class="lb-inner">
       <button id="lb-close" class="lb-close" aria-label="Close">✕</button>
+      <button id="lb-prev" class="lb-nav" aria-label="Previous">◀</button>
+      <button id="lb-next" class="lb-nav" aria-label="Next">▶</button>
       <img id="lb-img" src="" alt="">
       <p id="lb-cap"></p>
     </div>
