@@ -1,118 +1,127 @@
+/* script.js — handles mobile menu, scrollspy (IntersectionObserver), lightbox, accessibility */
 document.addEventListener('DOMContentLoaded', () => {
-  // Init AOS safely
-  try {
-    if (window.AOS) AOS.init({ once: true, duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
-  } catch (e) { console.warn('AOS init failed', e); }
+  // AOS already initialized inline in HTML; set year
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Set copyright year
-  document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+  // Mobile nav toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  navToggle?.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!expanded));
+    navLinks.classList.toggle('active');
+  });
 
-  // Fill progress bars (with slight delay to allow AOS)
-  setTimeout(() => {
-    document.querySelectorAll('.bar-fill').forEach(b => {
-      const pct = b.getAttribute('data-fill') || 0;
-      b.style.width = pct + '%';
+  // Close nav when link clicked (mobile)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      navToggle && navToggle.setAttribute('aria-expanded', 'false');
     });
-  }, 120);
+  });
 
-  // Lightbox for gallery thumbs with keyboard nav
+  // Scrollspy using IntersectionObserver (efficient)
+  const navAnchors = Array.from(document.querySelectorAll('.nav-links a'));
+  const sectionMap = new Map(); // id -> anchor element
+  navAnchors.forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('#')) {
+      sectionMap.set(href.slice(1), a);
+    }
+  });
+
+  const sections = Array.from(document.querySelectorAll('main section[id]'));
+  const observerOptions = { root: null, threshold: 0.55 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const anchor = sectionMap.get(id);
+      if (!anchor) return;
+      if (entry.isIntersecting) {
+        // remove active from all anchors
+        navAnchors.forEach(a => a.classList.remove('active'));
+        anchor.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
+
+  // Lightbox gallery
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
   const lbCap = document.getElementById('lb-cap');
   const lbClose = document.getElementById('lb-close');
   const lbPrev = document.getElementById('lb-prev');
   const lbNext = document.getElementById('lb-next');
-
-  // collect gallery items
   const thumbs = Array.from(document.querySelectorAll('.gallery-grid .thumb'));
-  const galleryDatas = thumbs.map(t => {
+  const imgs = thumbs.map(t => {
     const img = t.querySelector('img');
-    const cap = t.getAttribute('data-title') || (t.querySelector('figcaption') ? t.querySelector('figcaption').innerText : '');
-    return { src: img ? img.getAttribute('src') : '', cap: cap, el: t };
+    const caption = t.getAttribute('data-title') || (t.querySelector('figcaption') ? t.querySelector('figcaption').innerText : '');
+    return { el: img, src: img ? img.getAttribute('src') : '', alt: img ? img.getAttribute('alt') : '', caption };
   });
 
   let currentIndex = -1;
-  function openLightboxByIndex(i) {
-    if (i < 0 || i >= galleryDatas.length) return;
-    const item = galleryDatas[i];
+  function openLightbox(index) {
+    if (index < 0 || index >= imgs.length) return;
+    const item = imgs[index];
     lbImg.src = item.src;
-    lbImg.alt = item.cap || 'Preview';
-    lbCap.textContent = item.cap || '';
+    lbImg.alt = item.alt || item.caption || 'Preview';
+    lbCap.textContent = item.caption || item.alt || '';
     lb.classList.add('active');
     lb.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    currentIndex = i;
+    currentIndex = index;
+    // focus close for accessibility
+    lbClose && lbClose.focus();
   }
   function closeLightbox() {
     lb.classList.remove('active');
+    lb.setAttribute('aria-hidden', 'true');
     lbImg.src = '';
     lbCap.textContent = '';
-    lb.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     currentIndex = -1;
   }
-  function showNext() {
-    if (currentIndex < 0) return;
-    const next = (currentIndex + 1) % galleryDatas.length;
-    openLightboxByIndex(next);
-  }
-  function showPrev() {
-    if (currentIndex < 0) return;
-    const prev = (currentIndex - 1 + galleryDatas.length) % galleryDatas.length;
-    openLightboxByIndex(prev);
-  }
+  function showNext() { if (currentIndex >= 0) openLightbox((currentIndex + 1) % imgs.length); }
+  function showPrev() { if (currentIndex >= 0) openLightbox((currentIndex - 1 + imgs.length) % imgs.length); }
 
-  // click thumbs
   thumbs.forEach((t, idx) => {
     const img = t.querySelector('img');
     if (!img) return;
+    // lazy-load enhancement
+    if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
     img.addEventListener('click', (e) => {
       e.stopPropagation();
-      openLightboxByIndex(idx);
+      openLightbox(idx);
     });
   });
 
-  // click controls
   lbClose && lbClose.addEventListener('click', closeLightbox);
-  lbNext && lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-  lbPrev && lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lbNext && lbNext.addEventListener('click', showNext);
+  lbPrev && lbPrev.addEventListener('click', showPrev);
 
   // click outside to close
-  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+  lb && lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
 
-  // keyboard nav
+  // keyboard nav for lightbox
   document.addEventListener('keydown', (e) => {
-    if (lb.classList.contains('active')) {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
-    }
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
   });
 
-  // Fallback IntersectionObserver animate (for elements without AOS or if blocked)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Fill any bars inside
-        entry.target.querySelectorAll && entry.target.querySelectorAll('.bar-fill').forEach(b => {
-          b.style.width = (b.getAttribute('data-fill') || 0) + '%';
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.card, .exp, .skill-pill').forEach(el => observer.observe(el));
-
-  // image error handling (shows faded placeholder if missing)
-  document.querySelectorAll('img').forEach((img, i) => {
+  // image error handler: show faded placeholder
+  document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', () => {
       img.style.opacity = .18;
-      img.style.filter = 'grayscale(70%)';
+      img.style.filter = 'grayscale(80%)';
       img.alt = 'Image not found';
     });
-    // Add lazy loading attribute if missing (progressive enhancement)
-    if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
   });
+
+  // Ensure RD links open in new tab (just in case)
+  document.querySelectorAll('#rd a').forEach(a => { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); });
 });
