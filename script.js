@@ -1,6 +1,7 @@
-/* script.js — handles mobile menu, scrollspy (IntersectionObserver), lightbox, accessibility */
+/* script.js — mobile menu, scrollspy (IntersectionObserver), lightbox, project hover, accessibility */
+
 document.addEventListener('DOMContentLoaded', () => {
-  // AOS already initialized inline in HTML; set year
+  // year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('active');
   });
 
-  // Close nav when link clicked (mobile)
+  // Close menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
@@ -21,31 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Scrollspy using IntersectionObserver (efficient)
+  // Scrollspy using IntersectionObserver
   const navAnchors = Array.from(document.querySelectorAll('.nav-links a'));
-  const sectionMap = new Map(); // id -> anchor element
+  const sectionMap = new Map();
   navAnchors.forEach(a => {
     const href = a.getAttribute('href') || '';
-    if (href.startsWith('#')) {
-      sectionMap.set(href.slice(1), a);
-    }
+    if (href.startsWith('#')) sectionMap.set(href.slice(1), a);
   });
 
   const sections = Array.from(document.querySelectorAll('main section[id]'));
   const observerOptions = { root: null, threshold: 0.55 };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const id = entry.target.id;
-      const anchor = sectionMap.get(id);
+      const anchor = sectionMap.get(entry.target.id);
       if (!anchor) return;
       if (entry.isIntersecting) {
-        // remove active from all anchors
         navAnchors.forEach(a => a.classList.remove('active'));
         anchor.classList.add('active');
       }
     });
   }, observerOptions);
-
   sections.forEach(sec => observer.observe(sec));
 
   // Lightbox gallery
@@ -73,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lb.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     currentIndex = index;
-    // focus close for accessibility
     lbClose && lbClose.focus();
   }
   function closeLightbox() {
@@ -90,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
   thumbs.forEach((t, idx) => {
     const img = t.querySelector('img');
     if (!img) return;
-    // lazy-load enhancement
     if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
     img.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -101,11 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
   lbClose && lbClose.addEventListener('click', closeLightbox);
   lbNext && lbNext.addEventListener('click', showNext);
   lbPrev && lbPrev.addEventListener('click', showPrev);
-
-  // click outside to close
   lb && lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
 
-  // keyboard nav for lightbox
   document.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -113,7 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowLeft') showPrev();
   });
 
-  // image error handler: show faded placeholder
+  // Project card small hover interaction for keyboard focus
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', () => card.classList.add('hover'));
+    card.addEventListener('mouseleave', () => card.classList.remove('hover'));
+    card.addEventListener('focusin', () => card.classList.add('hover'));
+    card.addEventListener('focusout', () => card.classList.remove('hover'));
+  });
+
+  // image error handler
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', () => {
       img.style.opacity = .18;
@@ -122,6 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Ensure RD links open in new tab (just in case)
+  // ensure rd links open in new tab
   document.querySelectorAll('#rd a').forEach(a => { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); });
 });
