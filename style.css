@@ -18,10 +18,20 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
 
-/* Removed Timeline Styles: .timeline-controls, .tl-arrow, .timeline-wrapper, .timeline-item */
+/* Removed Timeline Styles */
 
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;}
+/* Certificate and Honors Grid */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
+
+/* Specific grid layout adjustments for Honors and Certificates */
+.honors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* May want wider columns for awards */
+}
+.certs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
 
 .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
   background:rgba(0,0,0,0.95);align-items:center;justify-content:center;flex-direction:column;z-index:2000;}
@@ -29,7 +39,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 #lightbox-close{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
 #lightbox-caption{color:#fff;margin-top:10px;}
 
-/* Removed R&D Tabs Styles: .rd-tab-buttons, .rd-btn, .rd-tab-content */
+/* Removed R&D Tabs Styles */
 
 /* Contact */
 .contact-card{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:flex-start;gap:1rem;}
