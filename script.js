@@ -17,10 +17,7 @@ window.addEventListener('scroll',()=>{
   });
 });
 
-// Timeline arrows
-const tlWrapper=document.getElementById('timeline-wrapper');
-document.getElementById('tl-prev').addEventListener('click',()=>{tlWrapper.scrollBy({left:-220,behavior:'smooth'});});
-document.getElementById('tl-next').addEventListener('click',()=>{tlWrapper.scrollBy({left:220,behavior:'smooth'});});
+// Removed Timeline arrows logic
 
 // Lightbox
 const lightbox=document.getElementById('lightbox');
@@ -38,17 +35,4 @@ document.getElementById('lightbox-close').onclick=()=>lightbox.style.display='no
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
 
-// R&D Tabs with smooth fade
-const rdBtns=document.querySelectorAll('.rd-btn');
-const rdContents=document.querySelectorAll('.rd-tab-content');
-rdBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    rdBtns.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    rdContents.forEach(c=>{
-      c.classList.remove('active');
-    });
-    const target=document.getElementById(btn.dataset.tab);
-    target.classList.add('active');
-  });
-});
+// Removed R&D Tabs logic
