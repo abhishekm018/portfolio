@@ -10,6 +10,12 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .card{background:rgba(20,30,50,0.6);border-radius:12px;padding:1.5rem;margin:1rem;
   backdrop-filter:blur(8px);box-shadow:0 0 20px rgba(0,0,0,0.3);}
+/* FIX: Reduce margin below all H3 headings inside a card */
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+
 .hero{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 .hero-title{color:#9b6cff;}
 .hero-sub{color:#9fb0c9;}
@@ -39,40 +45,55 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
-/* FIX: Remove space after job title */
+/* FIX: Remove space between job title and duration/location */
 .exp h4 {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0;
 }
 .exp p {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reduced space before bullet points */
+    font-style: italic;
+    color: #b0b0cc;
 }
 
-
-/* Certificate and Honors Grid - Sizing */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
+/* Certificate and Honors Grid - Sizing and Spacing */
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:1rem; 
+    margin-top: 0.5rem; /* Reduced gap below h4 heading */
+    margin-bottom: 2rem;
+}
 
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
 
+/* FIX: Reduce space below H4 subheadings */
+.card h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
 /* --- HONOR/AWARD SPECIFIC SIZING (Slightly larger box) --- */
 .honors-grid figure {
-    height: 150px; /* Slightly taller container for honors */
+    height: 150px; /* Taller container */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center; /* Center image horizontally */
+    align-items: center; 
+    padding: 5px; /* Added padding to ensure image and caption are within the box */
 }
 .honors-grid img {
-    height: 110px; /* Forces all images to a larger, consistent height */
-    object-fit: contain; /* Ensures the whole image is visible and scaled correctly */
+    height: 110px;
+    object-fit: contain; 
     width: 100%;
 }
 /* --- CERTIFICATES SIZING (Standard size) --- */
 .certs-grid figure {
-    height: 130px; /* Smaller container for certificates */
+    height: 130px; /* Standard container */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding: 5px;
 }
 .certs-grid img {
     height: 90px;
