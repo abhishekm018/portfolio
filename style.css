@@ -1,7 +1,7 @@
 body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .bg-animated{position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(800px 420px at 8% 10%,rgba(155,108,255,0.2),transparent 14%),
-             radial-gradient(600px 360px at 92% 78%,rgba(0,208,255,0.15),transparent 14%);
+              radial-gradient(600px 360px at 92% 78%,rgba(0,208,255,0.15),transparent 14%);
   filter:blur(30px);}
 .navbar{position:sticky;top:0;background:rgba(10,15,28,0.8);backdrop-filter:blur(10px);z-index:1000;}
 .nav-links{display:flex;justify-content:center;list-style:none;margin:0;padding:10px;gap:18px;}
@@ -18,10 +18,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
 
-.timeline-controls{display:flex;align-items:center;gap:12px;}
-.tl-arrow{background:#148;border:none;color:#fff;padding:6px 10px;border-radius:8px;cursor:pointer;}
-.timeline-wrapper{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding:12px;}
-.timeline-item{min-width:180px;padding:12px;border-radius:10px;background:rgba(40,50,80,0.5);text-align:center;box-shadow:0 0 10px #4ff;}
+/* Removed Timeline Styles: .timeline-controls, .tl-arrow, .timeline-wrapper, .timeline-item */
 
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;}
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
@@ -32,14 +29,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 #lightbox-close{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
 #lightbox-caption{color:#fff;margin-top:10px;}
 
-/* R&D Tabs */
-.rd-tab-buttons{display:flex;gap:1rem;margin-bottom:1rem;}
-.rd-btn{flex:1;padding:.5rem;border:none;border-radius:6px;cursor:pointer;
-  background:rgba(40,50,80,0.7);color:#8cf;font-weight:600;}
-.rd-btn.active{background:#148;color:#fff;box-shadow:0 0 12px #4ff;}
-.rd-tab-content{display:none;opacity:0;transition:opacity 0.6s ease;}
-.rd-tab-content.active{display:block;opacity:1;}
-.rd-tab-content a{display:block;color:#8cf;margin:6px 0;text-decoration:none;}
+/* Removed R&D Tabs Styles: .rd-tab-buttons, .rd-btn, .rd-tab-content */
 
 /* Contact */
 .contact-card{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:flex-start;gap:1rem;}
