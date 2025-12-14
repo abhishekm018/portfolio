@@ -17,6 +17,9 @@ window.addEventListener('scroll',()=>{
   });
 });
 
+// Removed Timeline arrows logic
+// Removed R&D Tabs logic
+
 // Lightbox
 const lightbox=document.getElementById('lightbox');
 const lightImg=document.getElementById('lightbox-img');
