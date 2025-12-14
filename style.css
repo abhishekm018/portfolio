@@ -15,23 +15,25 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .hero-sub{color:#9fb0c9;}
 .profile-photo{width:150px;border-radius:12px;box-shadow:0 0 20px #4ff;}
 
-/* Social Media Button Styling */
+/* Social Media Button Styling (LinkedIn, Twitter, GitHub) */
 .cta-hero{display:flex; gap: 10px; margin-top: 15px;}
 .cta-hero .social{
     background: transparent;
     border: 1px solid #4ff;
     color: #fff;
-    padding: 8px 15px; /* Smaller button size */
+    padding: 8px 15px; /* Button size */
     border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 0 5px #4ff; /* Initial glow */
+    text-shadow: 0 0 3px #fff;
 }
 .cta-hero .social:hover{
     background: #4ff;
     color: #0a0f1c;
     box-shadow: 0 0 15px #4ff, 0 0 30px #4ff; /* Stronger glow on hover */
+    text-shadow: none;
 }
 
 
@@ -40,7 +42,10 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 /* Certificate and Honors Grid - Standardized Size */
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
-/* Removed specific .honors-grid and .certs-grid styles to make them the same size */
+/* Ensures both .honors-grid and .certs-grid use the default 160px min width */
+.honors-grid, .certs-grid {
+    /* No additional sizing styles here, using .gallery-grid sizing */
+}
 
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
 
@@ -51,29 +56,32 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 #lightbox-close{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
 #lightbox-caption{color:#fff;margin-top:10px;}
 
-/* Contact Alignment Changes */
+/* Contact Alignment Fixes */
 .contact-card{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-between; /* Pushes left to left, right to right */
+    align-items: center; /* Align items vertically in the middle of the row */
     flex-wrap:wrap;
-    align-items: flex-end; /* Align content to the bottom */
     gap:1rem;
 }
 .contact-left {
-    text-align: left; /* Ensure left-side content stays left-aligned */
+    /* Contact info (Email, Phone) */
+    display: flex;
+    flex-direction: column;
 }
 .contact-right {
-    display: flex; /* Use flex to group button and copyright */
+    /* Button and Copyright */
+    display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Ensure right-side content stays right-aligned */
-    gap: 8px;
+    align-items: flex-end; /* Align elements to the right edge */
 }
 .resume-btn{
     background:#148;
     color:#fff;
-    padding:.3rem .8rem; /* Smaller padding for a smaller button */
+    padding:.3rem .8rem; /* Small button size */
     border-radius:6px;
     text-decoration:none;
     box-shadow:0 0 10px #4ff;
-    font-size: 0.9em; /* Slightly smaller font */
+    font-size: 0.9em;
+    margin-bottom: 5px; /* Spacing between button and copyright */
 }
