@@ -10,7 +10,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .card{background:rgba(20,30,50,0.6);border-radius:12px;padding:1.5rem;margin:1rem;
   backdrop-filter:blur(8px);box-shadow:0 0 20px rgba(0,0,0,0.3);}
-/* FIX: Reduce margin below all H3 headings inside a card */
+/* Reduce margin below all H3 headings inside a card */
 .card h3 {
     margin-top: 0;
     margin-bottom: 0.8rem;
@@ -45,14 +45,14 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
-/* FIX: Remove space between job title and duration/location */
+/* Work Experience spacing fix */
 .exp h4 {
     margin-bottom: 0;
 }
 .exp p {
     margin-top: 0;
     margin-bottom: 0.5rem; 
-    /* FIX: Removed font-style: italic; */
+    font-style: normal; /* Ensure text is NOT italic */
     color: #b0b0cc;
 }
 
@@ -65,9 +65,15 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     margin-bottom: 2rem;
 }
 
+/* FIX: Reduce space below H4 subheadings */
+.card h4 {
+    margin-top: 1rem; 
+    margin-bottom: 0.1rem; 
+}
+
 .gallery-grid figure{
     margin: 0; 
-    padding: 0;
+    padding: 5px; /* Added padding to create space inside the shadow box */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -78,21 +84,15 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     font-size: 0.9em;
     text-align: center;
 }
-
-/* Apply object-fit: contain to ALL gallery images to prevent cropping */
+/* CRUCIAL FIX: Ensures the whole image is visible and scaled to fit without cropping */
 .gallery-grid img{
     width:100%;
     border-radius:8px;
     cursor:pointer;
     box-shadow:0 0 10px #48f;
-    object-fit: contain; /* CRUCIAL FIX: Ensures the whole image is visible and scaled to fit */
+    object-fit: contain; 
 }
 
-/* FIX: Reduce space below H4 subheadings */
-.card h4 {
-    margin-top: 1rem; 
-    margin-bottom: 0.1rem; 
-}
 
 /* --- HONOR/AWARD SPECIFIC SIZING (Tighter Fit, Slightly larger box) --- */
 .honors-grid figure {
@@ -120,7 +120,9 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 /* Contact Alignment Fixes */
 .contact-card{
     display:flex;
+    /* FIX: Ensures left and right groups are aligned to opposite sides */
     justify-content:space-between; 
+    /* FIX: Ensures vertical alignment */
     align-items: center; 
     flex-wrap:wrap;
     gap:1rem;
