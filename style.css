@@ -10,12 +10,6 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .card{background:rgba(20,30,50,0.6);border-radius:12px;padding:1.5rem;margin:1rem;
   backdrop-filter:blur(8px);box-shadow:0 0 20px rgba(0,0,0,0.3);}
-/* Reduce margin below all H3 headings inside a card */
-.card h3 {
-    margin-top: 0;
-    margin-bottom: 0.8rem;
-}
-
 .hero{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 .hero-title{color:#9b6cff;}
 .hero-sub{color:#9fb0c9;}
@@ -27,88 +21,33 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     background: transparent;
     border: 1px solid #4ff;
     color: #fff;
-    padding: 8px 15px;
+    padding: 8px 15px; /* Button size */
     border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 0 5px #4ff;
+    box-shadow: 0 0 5px #4ff; /* Initial glow */
     text-shadow: 0 0 3px #fff;
 }
 .cta-hero .social:hover{
     background: #4ff;
     color: #0a0f1c;
-    box-shadow: 0 0 15px #4ff, 0 0 30px #4ff;
+    box-shadow: 0 0 15px #4ff, 0 0 30px #4ff; /* Stronger glow on hover */
     text-shadow: none;
 }
 
 
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
-/* Work Experience spacing fix (no extra space or italics) */
-.exp h4 {
-    margin-bottom: 0;
-}
-.exp p {
-    margin-top: 0;
-    margin-bottom: 0.5rem; 
-    font-style: normal;
-    color: #b0b0cc;
+
+/* Certificate and Honors Grid - Standardized Size */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
+/* Ensures both .honors-grid and .certs-grid use the default 160px min width */
+.honors-grid, .certs-grid {
+    /* No additional sizing styles here, using .gallery-grid sizing */
 }
 
-/* Certificate and Honors Grid - Sizing and Spacing */
-.gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:1rem; 
-    margin-top: 0; 
-    margin-bottom: 2rem;
-}
-
-/* Reduce space below H4 subheadings */
-.card h4 {
-    margin-top: 1rem; 
-    margin-bottom: 0.1rem; 
-}
-
-.gallery-grid figure{
-    margin: 0; 
-    padding: 5px; /* Added padding to create clean space inside the shadow box */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center; 
-}
-.gallery-grid figcaption {
-    padding: 5px 0;
-    font-size: 0.9em;
-    text-align: center;
-}
-/* CRUCIAL FIX: Ensures the whole image is visible and scaled to fit without cropping */
-.gallery-grid img{
-    width:100%;
-    border-radius:8px;
-    cursor:pointer;
-    box-shadow:0 0 10px #48f;
-    object-fit: contain; 
-}
-
-
-/* --- HONOR/AWARD SPECIFIC SIZING (Tighter Fit, Slightly larger box) --- */
-.honors-grid figure {
-    height: 150px; 
-}
-.honors-grid img {
-    height: 110px; 
-}
-/* --- CERTIFICATES SIZING (Tighter Fit, Standard size) --- */
-.certs-grid figure {
-    height: 130px; 
-}
-.certs-grid img {
-    height: 90px;
-}
-/* ------------------------------------- */
+.gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
 
 
 .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
@@ -120,29 +59,29 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 /* Contact Alignment Fixes */
 .contact-card{
     display:flex;
-    /* FIX: Ensures left and right groups are aligned to opposite sides */
-    justify-content:space-between; 
-    /* FIX: Ensures vertical alignment */
-    align-items: center; 
+    justify-content:space-between; /* Pushes left to left, right to right */
+    align-items: center; /* Align items vertically in the middle of the row */
     flex-wrap:wrap;
     gap:1rem;
 }
 .contact-left {
+    /* Contact info (Email, Phone) */
     display: flex;
     flex-direction: column;
 }
 .contact-right {
+    /* Button and Copyright */
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
+    align-items: flex-end; /* Align elements to the right edge */
 }
 .resume-btn{
     background:#148;
     color:#fff;
-    padding:.3rem .8rem; 
+    padding:.3rem .8rem; /* Small button size */
     border-radius:6px;
     text-decoration:none;
     box-shadow:0 0 10px #4ff;
     font-size: 0.9em;
-    margin-bottom: 5px; 
+    margin-bottom: 5px; /* Spacing between button and copyright */
 }
