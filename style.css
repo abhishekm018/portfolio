@@ -39,23 +39,44 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 .about-justified{text-align:justify;}
 .exp{margin-top:1rem;}
+/* FIX: Remove space after job title */
+.exp h4 {
+    margin-bottom: 0.3rem;
+}
+.exp p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 
-/* Certificate and Honors Grid - Standardized Size */
+
+/* Certificate and Honors Grid - Sizing */
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
 
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
 
-/* --- HONOR/AWARD SPECIFIC SIZING --- */
-/* Enforces same height for the three award images */
+/* --- HONOR/AWARD SPECIFIC SIZING (Slightly larger box) --- */
 .honors-grid figure {
-    height: 120px; 
+    height: 150px; /* Slightly taller container for honors */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; /* Center image horizontally */
+}
+.honors-grid img {
+    height: 110px; /* Forces all images to a larger, consistent height */
+    object-fit: contain; /* Ensures the whole image is visible and scaled correctly */
+    width: 100%;
+}
+/* --- CERTIFICATES SIZING (Standard size) --- */
+.certs-grid figure {
+    height: 130px; /* Smaller container for certificates */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
-.honors-grid img {
-    height: 100px;
-    object-fit: contain; /* Ensures the image fits within the box */
+.certs-grid img {
+    height: 90px;
+    object-fit: contain;
     width: 100%;
 }
 /* ------------------------------------- */
@@ -71,7 +92,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .contact-card{
     display:flex;
     justify-content:space-between; 
-    align-items: center; /* Vertically align items */
+    align-items: center; 
     flex-wrap:wrap;
     gap:1rem;
 }
@@ -82,12 +103,12 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 .contact-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Align elements to the right edge */
+    align-items: flex-end; 
 }
 .resume-btn{
     background:#148;
     color:#fff;
-    padding:.3rem .8rem; /* Small button size */
+    padding:.3rem .8rem; 
     border-radius:6px;
     text-decoration:none;
     box-shadow:0 0 10px #4ff;
