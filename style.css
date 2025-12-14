@@ -21,18 +21,18 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     background: transparent;
     border: 1px solid #4ff;
     color: #fff;
-    padding: 8px 15px; /* Button size */
+    padding: 8px 15px;
     border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 0 5px #4ff; /* Initial glow */
+    box-shadow: 0 0 5px #4ff;
     text-shadow: 0 0 3px #fff;
 }
 .cta-hero .social:hover{
     background: #4ff;
     color: #0a0f1c;
-    box-shadow: 0 0 15px #4ff, 0 0 30px #4ff; /* Stronger glow on hover */
+    box-shadow: 0 0 15px #4ff, 0 0 30px #4ff;
     text-shadow: none;
 }
 
@@ -42,12 +42,23 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 
 /* Certificate and Honors Grid - Standardized Size */
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem; margin-bottom: 2rem;}
-/* Ensures both .honors-grid and .certs-grid use the default 160px min width */
-.honors-grid, .certs-grid {
-    /* No additional sizing styles here, using .gallery-grid sizing */
-}
 
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer;box-shadow:0 0 10px #48f;}
+
+/* --- HONOR/AWARD SPECIFIC SIZING --- */
+/* Enforces same height for the three award images */
+.honors-grid figure {
+    height: 120px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.honors-grid img {
+    height: 100px;
+    object-fit: contain; /* Ensures the image fits within the box */
+    width: 100%;
+}
+/* ------------------------------------- */
 
 
 .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
@@ -59,18 +70,16 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
 /* Contact Alignment Fixes */
 .contact-card{
     display:flex;
-    justify-content:space-between; /* Pushes left to left, right to right */
-    align-items: center; /* Align items vertically in the middle of the row */
+    justify-content:space-between; 
+    align-items: center; /* Vertically align items */
     flex-wrap:wrap;
     gap:1rem;
 }
 .contact-left {
-    /* Contact info (Email, Phone) */
     display: flex;
     flex-direction: column;
 }
 .contact-right {
-    /* Button and Copyright */
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* Align elements to the right edge */
@@ -83,5 +92,5 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     text-decoration:none;
     box-shadow:0 0 10px #4ff;
     font-size: 0.9em;
-    margin-bottom: 5px; /* Spacing between button and copyright */
+    margin-bottom: 5px; 
 }
