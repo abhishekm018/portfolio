@@ -17,13 +17,12 @@ window.addEventListener('scroll',()=>{
   });
 });
 
-// Removed Timeline arrows logic
-
 // Lightbox
 const lightbox=document.getElementById('lightbox');
 const lightImg=document.getElementById('lightbox-img');
 const lightCap=document.getElementById('lightbox-caption');
-document.querySelectorAll('.gallery-grid img').forEach(img=>{
+// This selector now targets images in both honors and certificates grids
+document.querySelectorAll('.gallery-grid img').forEach(img=>{ 
   img.addEventListener('click',()=>{
     lightbox.style.display='flex';
     lightImg.src=img.src;
@@ -35,4 +34,4 @@ document.getElementById('lightbox-close').onclick=()=>lightbox.style.display='no
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
 
-// Removed R&D Tabs logic
+// Removed Timeline and R&D Tabs logic
