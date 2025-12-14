@@ -56,21 +56,17 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     color: #b0b0cc;
 }
 
-/* FIX: Reduce space below H4 subheadings and set tight grid margins */
-.card h4 {
-    margin-top: 1rem; /* Space before sub-heading */
-    margin-bottom: 0.1rem; /* Very small space before grid starts */
-}
+/* Certificate and Honors Grid - Sizing and Spacing */
 .gallery-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
     gap:1rem; 
-    margin-top: 0; /* Ensures grid is tight to h4 */
+    margin-top: 0; 
     margin-bottom: 2rem;
 }
 
 .gallery-grid figure{
-    margin: 0; /* FIX: Remove default figure margin (key to eliminating black space around image container) */
+    margin: 0; 
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -82,13 +78,20 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     font-size: 0.9em;
     text-align: center;
 }
+
+/* Apply object-fit: contain to ALL gallery images to prevent cropping */
 .gallery-grid img{
     width:100%;
     border-radius:8px;
     cursor:pointer;
     box-shadow:0 0 10px #48f;
-    /* FIX: Setting object-fit: cover ensures the image fills the dedicated space */
-    object-fit: cover; 
+    object-fit: contain; /* CRUCIAL FIX: Ensures the whole image is visible and scaled to fit */
+}
+
+/* FIX: Reduce space below H4 subheadings */
+.card h4 {
+    margin-top: 1rem; 
+    margin-bottom: 0.1rem; 
 }
 
 /* --- HONOR/AWARD SPECIFIC SIZING (Tighter Fit, Slightly larger box) --- */
@@ -96,7 +99,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f1c;color:#e0e0ff;margin:0;}
     height: 150px; 
 }
 .honors-grid img {
-    height: 110px; /* Forces height */
+    height: 110px; 
 }
 /* --- CERTIFICATES SIZING (Tighter Fit, Standard size) --- */
 .certs-grid figure {
