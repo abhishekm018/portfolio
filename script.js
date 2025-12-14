@@ -21,7 +21,6 @@ window.addEventListener('scroll',()=>{
 const lightbox=document.getElementById('lightbox');
 const lightImg=document.getElementById('lightbox-img');
 const lightCap=document.getElementById('lightbox-caption');
-// This selector now targets images in both honors and certificates grids
 document.querySelectorAll('.gallery-grid img').forEach(img=>{ 
   img.addEventListener('click',()=>{
     lightbox.style.display='flex';
@@ -33,5 +32,3 @@ document.getElementById('lightbox-close').onclick=()=>lightbox.style.display='no
 
 // Year
 document.getElementById('year').textContent=new Date().getFullYear();
-
-// Removed Timeline and R&D Tabs logic
